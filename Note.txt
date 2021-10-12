@@ -34,3 +34,9 @@
 
 - change the input group to the variable group (into, web, contest)
 <<o>>
+
+
+- add student after submit button is pressed
+- check if the things are null or not first
+
+- are we allowed to use 1 (numbers for variable name)

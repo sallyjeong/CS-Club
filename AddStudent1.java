@@ -1,5 +1,4 @@
-
-
+// addding an actual Student object
 
 //Usually you will require both swing and awt packages
 // even if you are working with just swings.
@@ -13,12 +12,18 @@ import javax.swing.border.TitledBorder;
 
 
 class AddStudent extends JFrame {
-
+  public static String nameInput;
+  public static idInput;
+  public static int gradeInput;
+  public static String groupInput;
+  public static friend1Input = -1;
+  public static friend2Input = -1;
+  public static friend3Input = -1;
+  
   AddStudent() {
     //Creating the Frame
     super("Students Enrollment");
     
-    //  this.setSize(500, 600);
     this.setVisible(true);
     this.setBounds(0, 0, 400, 500);
     this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -27,8 +32,6 @@ class AddStudent extends JFrame {
     
     JPanel panel = new JPanel();
     panel.setBounds(15, 15, 370, 97);
-    //panel.setBackground(Color.gray);
-    //panel.setBorder(BorderFactory.createLineBorder(Color.blue));
     TitledBorder title = BorderFactory.createTitledBorder("Personal Information");
     title.setTitleJustification(TitledBorder.CENTER);
     panel.setBorder(title);
@@ -37,7 +40,7 @@ class AddStudent extends JFrame {
     
     JPanel panel2 = new JPanel();
     panel2.setBounds(15, 130, 370, 125);
-    TitledBorder title2 = BorderFactory.createTitledBorder("Friend Preferences");
+    TitledBorder title2 = BorderFactory.createTitledBorder("Friend Preferences (Student #)");
     title2.setTitleJustification(TitledBorder.CENTER);
     panel2.setBorder(title2);
     SpringLayout layout2 = new SpringLayout();
@@ -56,107 +59,76 @@ class AddStudent extends JFrame {
     
     //name label
     JLabel nameLabel = new JLabel("Name:");
-    // nameLabel.setBounds(30, 50, 90, 20);
     panel.add(nameLabel);
-    //this.add(nameLabel);
     
     //student id label
     JLabel idLabel = new JLabel("Student #:");
-    // idLabel.setBounds(30, 100, 90, 20);
     panel.add(idLabel);
-    //this.add(idLabel);
     
     //friend 1 label
     JLabel friend1Label = new JLabel("Friend 1:");
-    // friend1Label.setBounds(30, 150, 90, 20);
-    //this.add(friend1Label);
     panel2.add(friend1Label);
     
     //friend 2 label
     JLabel friend2Label = new JLabel("Friend 2:");
-    // friend2Label.setBounds(30, 200, 90, 20);
-    //this.add(friend2Label);
     panel2.add(friend2Label);
     
     //friend 3 label
     JLabel friend3Label = new JLabel("Friend 3:");
-    // friend3Label.setBounds(30, 250, 90, 20);
-    //this.add(friend3Label);
     panel2.add(friend3Label);
     
     //group label
     JLabel groupLabel = new JLabel("Group:");
-    // groupLabel.setBounds(30, 300, 90, 20);
-    //this.add(groupLabel);
     panel3.add(groupLabel);
     
     //grade label
     JLabel gradeLabel = new JLabel("Grade:");
-    // gradeLabel.setBounds(30, 350, 90, 20);
     panel3.add(gradeLabel);
     
     //FIELDS ------------------------
     JTextField name = new JTextField(15);
-    // name.setBounds(100, 50, 200, 20);
-    //this.getContentPane().add(name);
     panel.add(name);
-    //name.setColumns(10);
-    // store name.getText();
+    nameInput = name.getText();
     
     JTextField id = new JTextField(15);
-    // id.setBounds(100, 100, 200, 20);
-    //this.getContentPane().add(id);
     panel.add(id);
-    //id.setColumns(10);
-    // store id.getText();
+    if (verifyNum(id.getText())) {
+      idInput = Integer.parseInt(id.getText());
+    }
     
     JTextField friend1 = new JTextField(15);
-    // friend1.setBounds(100, 150, 200, 20);
     this.getContentPane().add(friend1);
     panel2.add(friend1);
-    //friend1.setColumns(10);
-    // store friend1.getText();
-
+    if (verifyNum(friend1.getText())) {
+      friend1Input = Integer.parseInt(friend1.getText());
+    }
+    
     JTextField friend2 = new JTextField(15);
-    // friend2.setBounds(100, 200, 200, 20);
     this.getContentPane().add(friend2);
     panel2.add(friend2);
-    //friend2.setColumns(10);
-    // store friend2.getText();
+    if (verifyNum(friend2.getText())) {
+      friend2Input = Integer.parseInt(friend2.getText());
+    }
     
     JTextField friend3 = new JTextField(15);
-    // friend3.setBounds(100, 250, 200, 20);
     this.getContentPane().add(friend3);
     panel2.add(friend3);
-    //friend3.setColumns(10);
-    // store friend3.getText();
+    if (verifyNum(friend3.getText())) {
+      friend3Input = Integer.parseInt(friend3.getText());
+    }
     
     String[] group={"intro","web","contest"};
     JComboBox groupChoices=new JComboBox(group);
-    // groupChoices.setBounds(100,300,200,20);
     panel3.add(groupChoices);
-    // this.add(groupChoices);
-    // this.setLayout(null);
-    //  this.setSize(500,500);
-
     this.setVisible(true);
-    //  groupChoices.addActionListener(new );
+    groupChoices.addActionListener(new GroupChoiceListener());
     
     String[] grade={"grade 9","grade 10","grade 11", "grade 12"};
     JComboBox gradeChoices=new JComboBox(grade);
-    // gradeChoices.setBounds(100, 350,200,20);
     panel3.add(gradeChoices);
-    //this.add(cb2);
-    //  this.setLayout(null);
-    //   this.setSize(500,500);
     this.setVisible(true);
-    gradeChoices.addActionListener(new ActionListener() {
-      public void actionPerformed(ActionEvent e) {
-        JComboBox options = (JComboBox)e.getSource();
-        String grade = (String)options.getSelectedItem();
-        System.out.println(grade);
-      }
-    });
+    gradeChoices.addActionListener(new GradeChoiceListener());
+  
     //LAYOUT CONSTRAINTS----------------
     //name
     layout.putConstraint(SpringLayout.WEST, nameLabel, 15, SpringLayout.WEST, panel);
@@ -221,18 +193,39 @@ class AddStudent extends JFrame {
     this.add(panel3);
     this.setSize(400,600);
     this.setVisible(true);
-    
+
+  }
+  public boolean verifyStudentNum(String id) {
+    if (id.length() == 9) {
+      try {
+        int num = Integer.parseInt(id);
+    } catch (NumberFormatException e) {
+        JOptionPane.showMessageDialog(null, "Please Enter a Valid Student #");
+        return false;
+    }
+    return true;
+    }
+    return false;
   }
 }
-
-verifyStudentNum(String id)
 
 class SubmitButtonListener implements ActionListener {
   public void actionPerformed(ActionEvent arg0) {
-    if ((name.length()!=0)&&()&&()&&()&&()&&()&&()) //object type isnt string, not 9 digits
+    // //if valid
+    // //check for nulls + verifyStudentNum
+    //  if ((name.length()!=0)&&(verifyStudentNum(idInput))&&(verifyStudentNum(friend1Input))&&()&&()&&()&&({//object type isnt string, not 9 digits
+    EnrollmentSystem.addStudent(new Student(nameInput, idInput, gradeInput, groupInput,friend1Input, friend2Input, friend3Input));
+     }
+     // checking? EnrollmentSystem.displayStudents();
     JOptionPane.showMessageDialog(null, "Student Added");
+      // show the student info
+
+    else {
+      JOptionPane.showMessageDialog(null, "Please Try Again");
+    }
   }
 }
+
 class BackButtonListener implements ActionListener {
   JFrame frame;
   BackButtonListener(JFrame frame) {
@@ -245,5 +238,30 @@ class BackButtonListener implements ActionListener {
   }
 }
 
+class GroupChoiceListener implements ActionListener {
+  public void actionPerformed(ActionEvent e) {
+    JComboBox options = (JComboBox)e.getSource();
+    String chosen = (String)options.getSelectedItem();
+    int gradeNum = 0;
+    if (chosen.equals("grade 9")) {
+      gradeNum = 9;
+    } else if (chosen.equals("grade 10")) {
+      gradeNum = 10;
+    } else if (chosen.equals("grade 11")) {
+      gradeNum = 11;
+    } else if (chosen.equals("grade 12")) {
+      gradeNum = 12;
+    }
+    AddStudent.gradeInput = gradeNum;
+  }
+}
+
+class GradeChoiceListener implements ActionListener {
+  public void actionPerformed(ActionEvent e) {
+    JComboBox options = (JComboBox)e.getSource();
+    String chosen = (String)options.getSelectedItem();
+    AddStudent.groupInput = chosen;
+  }
+}
 
 
