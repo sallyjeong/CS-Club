@@ -1,0 +1,32 @@
+- we need a frame for 'remove student' so that they can enter the id of the student 
+<<o>>
+
+- the boolean thing
+
+- (-1) if they dont have a friend
+
+- make a subpage with the 2 different display options
+  - Jtable (sort by grade, group, name)
+
+
+
+- what do we want to do when they submit a student (add/remove)? return to menu? if we don't want it to return to menu, we need to make a button for return to menu
+<<o>>
+
+- we need to make a return to menu button for display students and display floor plan
+<<x>>
+
+- alignment is a bit weird (maybe its just windows)
+<</>>
+
+- are we gonna display students in the console or jframe
+<<o>>
+
+- comparator for sorting students (by grade, by group)
+<<o>>
+
+- add verification for student number (check that it's all #s and 9 digiits long)
+
+
+- change the input group to the variable group (into, web, contest)
+<<o>>

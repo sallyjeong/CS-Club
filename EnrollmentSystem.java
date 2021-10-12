@@ -4,7 +4,6 @@ public class EnrollmentSystem {
     private ArrayList<Student> studentList = new ArrayList<>();
     
     EnrollmentSystem () {
-        //fillGroups();
     }
 
     public void addStudent(Student student){     
@@ -20,21 +19,13 @@ public class EnrollmentSystem {
     }
 
     public void displayStudents(){
+      // idk if we need this? cause it'll be in the JTable pages
       for (int i = 0; i < studentList.size(); i++) {
         System.out.println(studentList.get(i));
       }
     }
-
+  
     public ArrayList getStudentList() {
       return studentList;
     }
-    // public void fillGroups() {
-    //   // edit constructor parameter
-    // Group gameDev = new Group("game development");
-    // Group webDev = new Group("web development");
-    // Group competitive = new Group("Competitive programming");
-
-    // groupList.add(gameDev, webDev, competitive);
-    // }
-
 }
