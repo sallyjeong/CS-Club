@@ -2,6 +2,10 @@
 <<o>>
 
 - the boolean thing
+- when you add a person, have the popup display their info
+  - actually adding the Student object into the arraylist
+
+- test out if you need (setVisible(true)) every time
 
 - (-1) if they dont have a friend
 
