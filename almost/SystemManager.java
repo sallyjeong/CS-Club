@@ -1,7 +1,7 @@
 public class SystemManager {
     public static EnrollmentSystem enrolment = new EnrollmentSystem();
-   // SeatingPlanSystem seatingPlan = new SeatingPlanSystem();
-   // FloorPlan floorPlan = new FloorPlan();
+    public SeatingPlanSystem seatingPlan = new SeatingPlanSystem();
+    public FloorPlan floorPlan = new FloorPlan();
   
     public static void main(String[] args){
       displayChoices();

@@ -1,15 +1,14 @@
+
 //Usually you will require both swing and awt packages
 // even if you are working with just swings.
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.BorderFactory;
-import javax.swing.border.Border;
 import javax.swing.border.TitledBorder;
 
 
-class RemoveStudent extends JFrame {
+public class RemoveStudent extends JFrame {
 
     public static JTextField studentID;
     public static int studentIDInput;
@@ -20,7 +19,6 @@ class RemoveStudent extends JFrame {
         super("Remove Student");
         this.enrolment = enrolment;
 
-        //  frame.setSize(500, 600);
         this.setVisible(true);
         this.setBounds(0, 0, 400, 500);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -29,8 +27,6 @@ class RemoveStudent extends JFrame {
 
         JPanel panel = new JPanel();
         panel.setBounds(15, 15, 370, 100);
-        //panel.setBackground(Color.gray);
-        //panel.setBorder(BorderFactory.createLineBorder(Color.blue));
         TitledBorder title = BorderFactory.createTitledBorder("Remove Student");
         title.setTitleJustification(TitledBorder.CENTER);
         panel.setBorder(title);
@@ -41,22 +37,11 @@ class RemoveStudent extends JFrame {
 
         //name label
         JLabel studentNumLabel = new JLabel("Student #:");
-//        studentNumLabel.setBounds(30, 50, 90, 20);
         panel.add(studentNumLabel);
-        //frame.add(nameLabel);
 
         //FIELDS ------------------------
         studentID = new JTextField(15);
-//        studentID.setBounds(100, 50, 200, 20);
-        //frame.getContentPane().add(name);
         panel.add(studentID);
-        //name.setColumns(10);
-        // store name.getText();
-//        if (verifyStudentNum(studentID.getText())) {
-//            studentNumber = Integer.parseInt(studentID.getText());
-//        }
-
-
 
         //LAYOUT CONSTRAINTS----------------
         //name
@@ -68,25 +53,24 @@ class RemoveStudent extends JFrame {
         //SUBMIT BUTTON-----------------
 
         JButton btnSubmit = new JButton("Submit");
+        btnSubmit.setBounds(280, 130, 90, 20);
         btnSubmit.addActionListener(new RemoveSubmitButtonListener());
-        btnSubmit.setBounds(150, 400, 90, 20);
 
         JButton btnBack = new JButton("Back");
-        btnBack.setBounds(20, 400, 90, 20);
-        btnBack.addActionListener(new RemoveBackButtonListener(this));
+        btnBack.setBounds(20, 130, 90, 20);
+        btnBack.addActionListener(new BackButtonListener(this));
 
-        this.getContentPane().add(btnBack);
         this.getContentPane().add(btnSubmit);
+        this.getContentPane().add(btnBack);
         this.setVisible(true);
 
         this.add(panel);
-        this.setSize(400,600);
+        this.setSize(400,210);
 
     }
     public static boolean verifyStudentNum(String id) {
         if (id.length() == 9) {
             try {
-                int num = Integer.parseInt(id);
             } catch (NumberFormatException e) {
                 JOptionPane.showMessageDialog(null, "Please Enter a Valid Student #");
                 return false;
@@ -107,7 +91,8 @@ class RemoveSubmitButtonListener implements ActionListener {
         }else{
             JOptionPane.showMessageDialog(null, "Student Not Found in the Database");
         }
-        System.out.println(RemoveStudent.studentIDInput);
+
+        RemoveStudent.studentID.setText("");
 
 //        RemoveStudent.enrolment.removeStudent(RemoveStudent.studentIDInput);
 //        int index = removeStudentIndex();
@@ -136,16 +121,5 @@ class RemoveSubmitButtonListener implements ActionListener {
 //    }
 }
 
-class RemoveBackButtonListener implements ActionListener {
-    JFrame frame;
-    RemoveBackButtonListener(JFrame frame) {
-        this.frame = frame;
-    }
-
-    public void actionPerformed(ActionEvent arg0) {
-        new Menu(AddStudent.enrolment);
-        frame.dispose();
-    }
-}
 
 

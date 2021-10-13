@@ -1,51 +1,25 @@
 - save the students into a file (so that it doesn't disappear when the program quits)
+  - and when the program starts, read from the file
 
-- we need a frame for 'remove student' so that they can enter the id of the student 
-<<o>>
 
-- the boolean thing
+- the boolean thing (wrong info -> popup message)
 - when you add a person, have the popup display their info
-  - actually adding the Student object into the arraylist
-
-- test out if you need (setVisible(true)) every time
-
-- (-1) if they dont have a friend
-
-- make a subpage with the 2 different display options
-  - Jtable (sort by grade, group, name)
-
-
-
-- what do we want to do when they submit a student (add/remove)? return to menu? if we don't want it to return to menu, we need to make a button for return to menu
-<<o>>
-
-- we need to make a return to menu button for display students and display floor plan
-<<x>>
-
-- alignment is a bit weird (maybe its just windows)
-<</>>
-
-- are we gonna display students in the console or jframe
-<<o>>
-
-- comparator for sorting students (by grade, by group)
-<<o>>
-
-- add verification for student number (check that it's all #s and 9 digiits long)
-<<o>>
-
-- change the input group to the variable group (into, web, contest)
-<<o>>
-
 
 - add student after submit button is pressed
 - check if the things are null or not first
 
-- are we allowed to use 1 (numbers for variable name)
-
-- are you allowed to use break
-
-- proper action listeners for display students and remove student
 ****** TO DO ******
+comments --> headers, methods, REORGANIZE CODE
+  - AddStudent is done
+  - SortByGrade is done
+  - SortByGroup is done
+  - Student
+GUI --> add image of the logo at the top ("welcome to CS Club")
+
+****** DONE ******
+user input --> error messages show up
+user input --> can't choose "--"
 sorting --> where do you put the comparator
+change it for remove student
+file i/o --> reading at the beginning, adding/removing students
 
