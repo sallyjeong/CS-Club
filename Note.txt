@@ -1,3 +1,5 @@
+- save the students into a file (so that it doesn't disappear when the program quits)
+
 - we need a frame for 'remove student' so that they can enter the id of the student 
 <<o>>
 
@@ -30,7 +32,7 @@
 <<o>>
 
 - add verification for student number (check that it's all #s and 9 digiits long)
-
+<<o>>
 
 - change the input group to the variable group (into, web, contest)
 <<o>>
@@ -40,3 +42,10 @@
 - check if the things are null or not first
 
 - are we allowed to use 1 (numbers for variable name)
+
+- are you allowed to use break
+
+- proper action listeners for display students and remove student
+****** TO DO ******
+sorting --> where do you put the comparator
+

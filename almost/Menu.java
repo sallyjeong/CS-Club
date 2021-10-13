@@ -14,11 +14,19 @@
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import javax.swing.BorderFactory;
+import javax.swing.border.Border;
+import javax.swing.border.TitledBorder;
 
 
-class menu2 extends JFrame {
-  menu2() {
+class Menu extends JFrame {
+    public static EnrollmentSystem enrolment;
+  Menu(EnrollmentSystem enrolment) {
     super("Menu");
+    this.enrolment = enrolment;
+
     this.setVisible(true);
     this.setBounds(0, 0, 400, 500);
     this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);        
@@ -82,7 +90,7 @@ class AddButtonListener implements ActionListener {
   
   public void actionPerformed(ActionEvent e) {
     frame.dispose();
-    new AddStudent();
+    new AddStudent(Menu.enrolment);
     
     // we should rename this though lmao
     // call the gui3 (page with student info)
@@ -96,7 +104,7 @@ class RemoveButtonListener implements ActionListener {
   }
   
   public void actionPerformed(ActionEvent e) {
-    new RemoveStudent();
+    new RemoveStudent(Menu.enrolment);
     frame.dispose();
     // call a page asking for student number ---- doens't exist yet
     // in that page/class, call enrollment system. remove student
@@ -112,6 +120,7 @@ class FloorPlanListener implements ActionListener {
     //new __ ()
     frame.dispose();
     // floorPlan.displayTables();
+    // ask peter/tecsa if we need to call the method or if they will once we open it
   }
 }
 class DisplayButtonListener implements ActionListener {
@@ -121,7 +130,7 @@ class DisplayButtonListener implements ActionListener {
   }
   
   public void actionPerformed(ActionEvent e) {
-    new DisplayStudentMenu();
+    new DisplayStudentMenu(Menu.enrolment);
     frame.dispose();
     // go into the page that gives options (import java.util.Collections?)
     // either

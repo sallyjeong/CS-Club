@@ -1,6 +1,3 @@
-package CSClub;
-
-
 //Usually you will require both swing and awt packages
 // even if you are working with just swings.
 import javax.swing.*;
@@ -13,7 +10,10 @@ import javax.swing.border.TitledBorder;
 
 
 class RemoveStudent extends JFrame {
-    public static int studentNumber;
+
+    public static JTextField studentID;
+    public static int studentIDInput;
+
     public static EnrollmentSystem enrolment;
     RemoveStudent(EnrollmentSystem enrolment) {
 
@@ -46,15 +46,15 @@ class RemoveStudent extends JFrame {
         //frame.add(nameLabel);
 
         //FIELDS ------------------------
-        JTextField studentID = new JTextField(15);
+        studentID = new JTextField(15);
 //        studentID.setBounds(100, 50, 200, 20);
         //frame.getContentPane().add(name);
         panel.add(studentID);
         //name.setColumns(10);
         // store name.getText();
-        if (verifyStudentNum(studentID.getText())) {
-            studentNumber = Integer.parseInt(studentID.getText());
-        }
+//        if (verifyStudentNum(studentID.getText())) {
+//            studentNumber = Integer.parseInt(studentID.getText());
+//        }
 
 
 
@@ -83,7 +83,7 @@ class RemoveStudent extends JFrame {
         this.setSize(400,600);
 
     }
-    public boolean verifyStudentNum(String id) {
+    public static boolean verifyStudentNum(String id) {
         if (id.length() == 9) {
             try {
                 int num = Integer.parseInt(id);
@@ -98,22 +98,42 @@ class RemoveStudent extends JFrame {
 }
 class RemoveSubmitButtonListener implements ActionListener {
     public void actionPerformed(ActionEvent arg0) {
-        int count = 0;
-        while (RemoveStudent.enrolment.getStudentList().size()>count || RemoveStudent.enrolment.getStudentList().get(count).getId()!=RemoveStudent.studentNumber){
-            count++;
+        if (RemoveStudent.verifyStudentNum(RemoveStudent.studentID.getText())) {
+            RemoveStudent.studentIDInput = Integer.parseInt(RemoveStudent.studentID.getText());
         }
-        if (RemoveStudent.enrolment.getStudentList().get(count).getId()==RemoveStudent.studentNumber) {
-            RemoveStudent.enrolment.getStudentList().remove(count);
+
+        if (RemoveStudent.enrolment.removeStudent(RemoveStudent.studentIDInput)){
             JOptionPane.showMessageDialog(null, "Student Removed");
         }else{
             JOptionPane.showMessageDialog(null, "Student Not Found in the Database");
         }
+        System.out.println(RemoveStudent.studentIDInput);
 
+//        RemoveStudent.enrolment.removeStudent(RemoveStudent.studentIDInput);
+//        int index = removeStudentIndex();
+//        if (index>=0){
+//            RemoveStudent.enrolment.getStudentList().remove(index);
+//            JOptionPane.showMessageDialog(null, "Student Removed");
+//        }else{
+//            JOptionPane.showMessageDialog(null, "Student Not Found in the Database");
+//        }
 
-        // show the student info
-
-        // JOptionPane.showMessageDialog(null, "Please Try Again");
     }
+
+//    public int removeStudentIndex() {
+//        int count = 0;
+//        while (RemoveStudent.enrolment.getStudentList().size() > count) {
+//            System.out.println(RemoveStudent.enrolment.getStudentList());
+//            if (RemoveStudent.enrolment.getStudentList().get(count).getId() == RemoveStudent.studentIDInput) {
+//                System.out.println("true");
+//                return count;
+//            }
+//            count++;
+//            System.out.println("count: "+count);
+//        }
+//        System.out.println("false");
+//        return -1;
+//    }
 }
 
 class RemoveBackButtonListener implements ActionListener {
