@@ -227,6 +227,22 @@ public class AddStudent extends JFrame {
     }
     return id;
   }
+  
+  /**
+   * studentExists
+   * This method checks if a student already exists in the system
+   * @param id The inputted ID from the user
+   * @return true if the Student with the same student number already exists, false otherwise
+   */
+  public static boolean studentExists(String id) {
+    for (int i = 0; i<enrolment.getStudentList().size(); i++){
+      if (id.equals(enrolment.getStudentList().get(i).getId() + "")) {
+        JOptionPane.showMessageDialog(null, "Student Already Exists (duplicate student #)");
+        return true;
+      }
+    }
+    return false;
+  }
 
   /**
    * verifyComboChoice
@@ -265,7 +281,7 @@ class SubmitButtonListener implements ActionListener {
 
     // *** gathering student info *** //
     AddStudent.nameInput = AddStudent.name.getText();
-    if ((AddStudent.verifyStudentNum(AddStudent.id.getText())) && AddStudent.verifyStudentNum(friend1Text)
+    if ((AddStudent.verifyStudentNum(AddStudent.id.getText())) && (!AddStudent.studentExists(AddStudent.id.getText())) && AddStudent.verifyStudentNum(friend1Text)
             && AddStudent.verifyStudentNum(friend2Text) && AddStudent.verifyStudentNum(friend3Text)
             && AddStudent.verifyComboChoice(AddStudent.gradeChosen) && AddStudent.verifyComboChoice(AddStudent.groupChosen)) {
 

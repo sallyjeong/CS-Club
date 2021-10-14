@@ -9,11 +9,6 @@
 - check if the things are null or not first
 
 ****** TO DO ******
-comments --> headers, methods, REORGANIZE CODE
-  - AddStudent is done
-  - SortByGrade is done
-  - SortByGroup is done
-  - Student
 GUI --> add image of the logo at the top ("welcome to CS Club")
 
 ****** DONE ******
@@ -22,4 +17,5 @@ user input --> can't choose "--"
 sorting --> where do you put the comparator
 change it for remove student
 file i/o --> reading at the beginning, adding/removing students
+comments --> headers, methods, REORGANIZE CODE
 
